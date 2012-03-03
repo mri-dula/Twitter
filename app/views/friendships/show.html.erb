@@ -1,0 +1,7 @@
+<b><div class="users" ><b/>
+	<% @friendships = Friendship.where("user_id=id") %>
+	<% @friendships.each do |friendship| %>
+		<% @users = User.where("id=friendship.friend_id")  %>
+		<%= print @users.username %>
+	<% end %>
+<b></div></b> 

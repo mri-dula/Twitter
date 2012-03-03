@@ -1,0 +1,10 @@
+<% if logged_in? %>
+	<p><%= render :partial => "users/login" %></p>
+	<%= form_tag(:controller => "posts", :action => "create") do %>
+  	<%= label_tag(:message, "What's on your mind?") %> <br/>
+  	<%= text_area_tag(:message, nil, :size => "80x6") %> <br/>
+  	<%= submit_tag("Tweet") %>
+	<% end %>
+<% else %>
+	<p><%= render :partial => "users/login" %></p>
+<% end %>
