@@ -1,7 +1,7 @@
-<b><div class="users" ><b/>
-	<% @friendships = Friendship.where("user_id=id") %>
-	<% @friendships.each do |friendship| %>
-		<% @users = User.where("id=friendship.friend_id")  %>
-		<%= print @users.username %>
+	<% this_user = User.find(params[:id]) %>
+	<%  this_user.friendships.each do |friend|%>
+		<% f_id = friend.friend_id %>
+		<b><div class="users" ><b/>
+			<%=  User.find(:first, :conditions => ['id = ?', f_id]).username %><br />
+		<b></div></b>
 	<% end %>
-<b></div></b> 
