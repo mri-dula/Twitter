@@ -1,7 +1,11 @@
 class FriendshipsController < ApplicationController
   def index
+    user = User.find(params[:user_id])
+    user.friends_count = user.friends_count + 1
+    friend = User.find(:first, :conditions => ['id = ?', params[:friend_id]])
+    friend.follower_count = friend.follower_count + 1
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
-    if @friendship.save
+    if @friendship.save and user.save and friend.save
       flash[:notice] = "Friend Added."
       redirect_to root_url
     else

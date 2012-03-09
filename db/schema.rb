@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307174424) do
+ActiveRecord::Schema.define(:version => 20120309090402) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "user_id"
@@ -22,20 +22,37 @@ ActiveRecord::Schema.define(:version => 20120307174424) do
 
   create_table "posts", :force => true do |t|
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.integer  "user_id"
+    t.integer  "in_reply_to_post_id"
+    t.integer  "in_reply_to_user_id"
+    t.string   "in_reply_to_user_name"
+    t.string   "source_ip"
   end
 
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "tags", :force => true do |t|
+    t.string  "text"
+    t.integer "post_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.text     "description"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.text     "location"
+    t.integer  "friends_count",  :default => 0
+    t.integer  "follower_count", :default => 0
+    t.integer  "status_count",   :default => 0
+    t.boolean  "protected",      :default => false
   end
 
 end

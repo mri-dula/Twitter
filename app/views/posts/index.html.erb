@@ -12,19 +12,19 @@
 
   	<% array_of_friend_ids.append current_user.id %>
 
-  	<%= array_of_friend_ids %>
   	<% array_of_friend_ids.each do |friend_id| %>
   	  <% posts_to_be_displayed = posts_to_be_displayed + Post.find(:all, :conditions => ['user_id = ?', friend_id]) %>
   	<% end %>
-  
-  	<% posts_to_be_displayed.each do |post_to_be_displayed|%>
-  		<b><div class="posts"></b> 
+    
+    <% posts_to_be_displayed.sort_by! { |post_to_be_displayed| - post_to_be_displayed.id } %>
+
+  	<%= div_for posts_to_be_displayed, :class => "post" do |post_to_be_displayed| %>
   	  <p><b>Posted <%= time_ago_in_words(post_to_be_displayed.created_at) %></b></p>
-  	  <p><%= post_to_be_displayed.user.username + ": " %> mridula
+  	  <p><%= post_to_be_displayed.user.username + ": " %> 
   	  <%= post_to_be_displayed.message %> </p> 
-  	  <b></div></b>
- 	 <% end %>
+    <% end %>
+    
+    <%= link_to "Make Friends", users_path(:id => current_user) %>
+    <%= link_to "My Friends", { :controller => "friendships", :action => "show", :id => current_user } %> 
   
 <% end %> 
-<%= link_to "Make Friends", users_path %>
-<%= link_to "My Friends", { :controller => "friendships", :action => "show", :id => current_user } %> 

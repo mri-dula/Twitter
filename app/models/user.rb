@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :posts
   
 
-  attr_accessible :username, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation, :location, :description, :first_name, :last_name
   attr_accessor :password
   before_save :prepare_password
 
