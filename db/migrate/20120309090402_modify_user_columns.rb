@@ -1,12 +1,11 @@
 class ModifyUserColumns < ActiveRecord::Migration
   def change
-=begin
   	remove_column :users, :first_name
   	remove_column :users, :last_name
   	remove_column :users, :location
   	remove_column :users, :friends_count
-=end
-  	remove_column :users, :follower_count 
+
+  	remove_column :users, :follower_count
   	remove_column :users, :status_count
   	remove_column :users, :protected
 

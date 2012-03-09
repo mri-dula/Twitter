@@ -17,34 +17,7 @@
   </head>
 
   <body>
-    <header role="banner" class="outer" id="header">
-      <div class="container">
-        <div class="logo home"><h1 style="color:white;">Tweebo</h1></div>
-        <span class="loading" style="opacity: 0;"></span>
-        <!-- <span onclick="humane.action('click me');">click me</span> -->
-        <div class="menu">
-          <a title="Home" class="home" href="/#">Home</a>
-
-          <ul class="notifications dropdown" id="notifications">
-            <a title="Notifications" href="#">Notifications</a>
-            <% flash.each do |name, message| %>
-              <li class="unread" id="<%= "flash_#{name}" -%>" ><%= message -%></li>
-            <% end %>
-          </ul>
-
-          <input type="search" placeholder="search">
-          <% if current_user -%>
-            <ul class="profile dropdown right arrow">
-              <a href="#"><img style="line-height: 48px;" width="24" height="24" style="height:24px;" src="http://a3.twimg.com/sticky/default_profile_images/default_profile_4_mini.png" class="user-image"></a>
-              <li><a href="<%= users_path(:id => current_user) -%>">Make Friends</a></li>
-              <li><%= link_to "My Friends", { :controller => "friendships", :action => "show", :id => current_user } %></li>
-              <li><a id="logout" href="/logout">Logout</a></li>
-            </ul>
-          <% end -%>
-        </div>
-      </div>
-    </header>
-        <%= yield %>
+     <%= yield %>
    <div id="humane" class="humane"></div>
   </body>
 </html>

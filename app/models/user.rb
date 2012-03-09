@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :friendships
   has_many :friends, :through => :friendships
   has_many :posts
-  
+
 
   attr_accessible :username, :email, :password, :password_confirmation, :location, :description, :first_name, :last_name
   attr_accessor :password
@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 
   def encrypt_password(pass)
     BCrypt::Engine.hash_secret(pass, password_salt)
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   private

@@ -1,15 +1,33 @@
-<% title "Log in" %>
+<div class="container login" id="login">
+  <div class="frame cf" style="width: 295px;">
 
-<p>Don't have an account? <%= link_to "Sign up!", signup_path %></p>
+    <h2>Log in to Tweebo</h2>
+    <div class="col cf">
+    <form action="<%= sessions_path -%>" class="login email" method="POST">
+      <fieldset class="block">
+        <div class="row">
+          <%= text_field_tag :login, params[:login], :class => "phfield", :id => "email" %>
+          <label class="ph" for="email">Username or Email address</label>
+        </div>
+        <div class="row">
+          <%= password_field_tag :password %>
+          <label class="ph" for="password">Password</label>
+        </div>
+      </fieldset>
+      <div class="actions cf">
+        <div class="keeploggedin">
+          <%= link_to "Sign up!", signup_path %>
+        </div>
+        <input type="submit" value="Log in" class="button login">
+      </div>
+    </form>
+    <br/><br/>
+    </div>
+  </div>
 
-<%= form_tag sessions_path do %>
-  <p>
-    <%= label_tag :login, "Username or Email Address" %><br />
-    <%= text_field_tag :login, params[:login] %>
-  </p>
-  <p>
-    <%= label_tag :password %><br />
-    <%= password_field_tag :password %>
-  </p>
-  <p><%= submit_tag "Log in" %></p>
-<% end %>
+  <footer class="center" role="footer">
+    <p class="quote">
+      “Microblogging at it's best” <br>~ Read Write Web
+    </p>
+  </footer>
+</div>
