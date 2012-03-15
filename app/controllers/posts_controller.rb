@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all(:order => "created_at DESC")
+    @posts = current_user.timeline if logged_in?
     respond_to do |format|
       format.html
     end

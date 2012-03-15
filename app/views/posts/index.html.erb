@@ -18,8 +18,7 @@
 
             <ul class="feed" id="mopeds">
               <% if !current_user.nil? %>
-                <% posts_to_be_displayed = current_user.timeline -%>
-                <% posts_to_be_displayed.each do |post_to_be_displayed| %>
+                <% @posts.each do |post| %>
                   <li class="moped cf">
                     <div class="frame cf message">
                       <div class="image" style="height:54px;">
@@ -27,12 +26,12 @@
                       </div>
                       <div class="body">
                         <div class="creator">
-                          <a class="username" href="#"><%= post_to_be_displayed.user.username -%></a>
-                          <span class="displayname"><%= post_to_be_displayed.user.full_name -%></span>
+                          <a class="username" href="#"><%= post.user.username -%></a>
+                          <span class="displayname"><%= post.user.full_name -%></span>
                         </div>
                         <button class="remove">×</button>
-                        <pre class="thing"><%= post_to_be_displayed.message %></pre>
-                        <span class="timestamp" data-time="1328690942"><%= time_ago_in_words(post_to_be_displayed.created_at) %></span>
+                        <pre class="thing"><%= post.message %></pre>
+                        <span class="timestamp" data-time="1328690942"><%= time_ago_in_words(post.created_at) %></span>
                         <button class="reply">Reply</button>
                       </div>
                     </div>
