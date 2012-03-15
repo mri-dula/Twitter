@@ -18,23 +18,7 @@
 
             <ul class="feed" id="mopeds">
               <% if !current_user.nil? %>
-                <% friends_of_current_user = current_user.friendships %>
-
-                <% array_of_friend_ids = Array.new %>
-                <% posts_to_be_displayed = Array.new %>
-
-                <% friends_of_current_user.each do |friend| %>
-                  <% array_of_friend_ids.append friend.friend_id %>
-                <% end %>
-
-                <% array_of_friend_ids.append current_user.id %>
-
-                <% array_of_friend_ids.each do |friend_id| %>
-                  <% posts_to_be_displayed = posts_to_be_displayed + Post.find(:all, :conditions => ['user_id = ?', friend_id]) %>
-                <% end %>
-
-                <% posts_to_be_displayed.sort_by! { |post_to_be_displayed| - post_to_be_displayed.id } %>
-
+                <% posts_to_be_displayed = current_user.timeline -%>
                 <% posts_to_be_displayed.each do |post_to_be_displayed| %>
                   <li class="moped cf">
                     <div class="frame cf message">

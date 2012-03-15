@@ -31,7 +31,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def timeline
+    Post.by_users(me_and_my_friends).latest_first
+  end
+
   private
+
+  def me_and_my_friends
+    friends.to_a << self
+  end
 
   def prepare_password
     unless password.blank?
